@@ -11,9 +11,9 @@ class ProductViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val productList = RetrofitClient.apiService.getProducts()
-                products.postValue(productList)
+                products.postValue(productList.products)
             } catch (e: Exception) {
-                // Manejar el error
+                // Handle the error
             }
         }
     }

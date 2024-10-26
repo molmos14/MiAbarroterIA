@@ -1,3 +1,7 @@
 package mx.moa.miabarroteria.model.products
 
-class ProductList : ArrayList<Product>()
+import com.google.gson.annotations.SerializedName
+
+data class ProductList(
+    @SerializedName("products") val products: List<Product>
+)

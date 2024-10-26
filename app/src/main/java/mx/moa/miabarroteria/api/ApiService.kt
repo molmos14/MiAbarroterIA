@@ -4,6 +4,6 @@ import mx.moa.miabarroteria.model.products.ProductList
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("api/products")
+    @GET("products") // Asegúrate de que el endpoint sea correcto
     suspend fun getProducts(): ProductList
 }
