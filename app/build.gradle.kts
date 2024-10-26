@@ -61,6 +61,8 @@ chaquopy {
             install("SpeechRecognition")
             install("sounddevice")
             install("numpy")
+            install("pandas")
+            //install("sqalchemy")
         }
     }
 }
@@ -99,4 +101,6 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.9")
     implementation("org.jetbrains.kotlin:kotlin-parcelize-runtime:1.8.0")
 
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 }

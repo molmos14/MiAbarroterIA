@@ -1,4 +1,3 @@
-// File: app/src/main/java/mx/moa/miabarroteria/model/PythonModel.kt
 package mx.moa.miabarroteria.model
 
 import com.chaquo.python.PyObject
@@ -8,7 +7,12 @@ class PythonModel {
     private val py: Python = Python.getInstance()
 
     fun recognizeSpeech(): String {
-        val pyObject: PyObject = py.getModule("script").callAttr("record_and_recognize_audio")
-        return pyObject.toString()
+        return try {
+            val pyObject: PyObject = py.getModule("query")
+            val result: PyObject = pyObject.callAttr("generar_query_sql")
+            result.toString()
+        } catch (e: Exception) {
+            "Error: ${e.message}"
+        }
     }
 }

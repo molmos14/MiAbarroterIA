@@ -1,4 +1,3 @@
-// File: app/src/main/java/mx/moa/miabarroteria/MainActivity.kt
 package mx.moa.miabarroteria
 
 import android.content.pm.PackageManager
@@ -16,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.app.ActivityCompat
@@ -23,10 +23,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import mx.moa.miabarroteria.network.main
 import mx.moa.miabarroteria.ui.theme.MiAbarroterIATheme
 import mx.moa.miabarroteria.viewmodel.PythonViewModel
 
 class MainActivity : ComponentActivity() {
+    private val pythonViewModel: PythonViewModel by viewModels()
     private val REQUEST_RECORD_AUDIO_PERMISSION = 200
     private var permissionToRecordAccepted = false
     private var permissions: Array<String> = arrayOf("android.permission.RECORD_AUDIO")
@@ -38,7 +40,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             MiAbarroterIATheme {
                 val navController = rememberNavController()
-                val pythonViewModel: PythonViewModel by viewModels()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     NavHost(
                         navController = navController,
@@ -59,6 +60,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        main() // Call the main function from NetworkClient
     }
 
     override fun onRequestPermissionsResult(
@@ -73,8 +75,6 @@ class MainActivity : ComponentActivity() {
         if (!permissionToRecordAccepted) finish()
     }
 }
-
-// File: app/src/main/java/mx/moa/miabarroteria/MainActivity.kt
 @Composable
 fun InitialView(
     modifier: Modifier = Modifier,
@@ -108,7 +108,7 @@ fun InitialView(
         }
         Button(
             onClick = {
-                pythonViewModel.recognizeSpeech().also { helloMessage = it }
+                helloMessage = pythonViewModel.recognizeSpeech()
                 navController.navigate("inventoryView")
             },
             colors = androidx.compose.material3.ButtonDefaults.buttonColors(containerColor = Color.Blue),
@@ -137,5 +137,32 @@ fun InitialView(
                 modifier = Modifier.padding(top = 20.dp)
             )
         }
+    }
+}
+
+@Composable
+fun InventoryView() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Inventario",
+            fontSize = 50.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 70.dp)
+        )
+        // Aquí puedes agregar más contenido relacionado con el inventario
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun InitialViewPreview() {
+    MiAbarroterIATheme {
+        InitialView(pythonViewModel = PythonViewModel(), navController = rememberNavController())
     }
 }

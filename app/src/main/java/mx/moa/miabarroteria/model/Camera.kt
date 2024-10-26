@@ -9,7 +9,6 @@ import androidx.camera.core.CameraXThreads.TAG
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import mx.moa.miabarroteria.InitialView
 
 class Camera: AppCompatActivity() {
 

@@ -1,15 +1,12 @@
-// File: app/src/main/java/mx/moa/miabarroteria/viewmodel/PythonViewModel.kt
 package mx.moa.miabarroteria.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.chaquo.python.PyObject
-import com.chaquo.python.Python
+import mx.moa.miabarroteria.model.PythonModel
 
 class PythonViewModel : ViewModel() {
-    private val py: Python = Python.getInstance()
+    private val pythonModel = PythonModel()
 
     fun recognizeSpeech(): String {
-        val pyObject: PyObject = py.getModule("script").callAttr("record_and_recognize_audio")
-        return pyObject.toString()
+        return pythonModel.recognizeSpeech()
     }
 }
