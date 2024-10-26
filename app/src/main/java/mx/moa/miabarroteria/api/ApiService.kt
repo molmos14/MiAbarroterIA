@@ -4,6 +4,6 @@ import mx.moa.miabarroteria.model.products.ProductList
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("products")
+    @GET("api/products")
     suspend fun getProducts(): ProductList
 }

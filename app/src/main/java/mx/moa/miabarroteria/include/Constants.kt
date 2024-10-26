@@ -4,7 +4,7 @@ class Constants {
     // Objeto companion para mantener valores constantes
     companion object {
         // Base URL for the API PRODUCTS
-        const val API_URL = ""
+        const val API_URL = "http://147.182.167.192:8080/"
         const val CHAT_URL = ""
     }
 }
