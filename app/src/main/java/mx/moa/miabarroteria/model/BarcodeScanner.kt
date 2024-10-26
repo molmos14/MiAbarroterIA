@@ -1,5 +1,5 @@
 package mx.moa.miabarroteria.model
-
+/*
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.common.Barcode.FORMAT_UPC_A
 
@@ -17,3 +17,4 @@ fun setZoom(ZoomRatio: Float): Boolean {
     camera.getCameraControl().setZoomRatio(zoomRatio)
     return true
 }
+*/

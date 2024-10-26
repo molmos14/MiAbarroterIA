@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-parcelize")
+    id("com.chaquo.python")
 }
 
 android {
@@ -18,6 +19,9 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+        ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
         }
     }
 
@@ -50,6 +54,17 @@ android {
     }
 }
 
+chaquopy {
+    defaultConfig {
+        pip {
+            // A requirement specifier, with or without a version number:
+            install("SpeechRecognition")
+            install("sounddevice")
+            install("numpy")
+        }
+    }
+}
+
 dependencies {
 
 
@@ -68,6 +83,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -82,8 +99,4 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.9")
     implementation("org.jetbrains.kotlin:kotlin-parcelize-runtime:1.8.0")
 
-    // For Gradle (build.gradle)
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("mysql:mysql-connector-java")
 }

@@ -29,7 +29,7 @@ class Camera: AppCompatActivity() {
             val preview = Preview.Builder()
                 .build()
                 .also {
-                    it.setSurfaceProvider(viewFinder.surfaceProvider) // viewFinder is your PreviewView
+                    //it.setSurfaceProvider(viewFinder.surfaceProvider) // viewFinder is your PreviewView
                 }
 
             try {
