@@ -1,5 +1,6 @@
 package mx.moa.miabarroteria.network
 
+import android.util.Log
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
@@ -22,14 +23,14 @@ fun main() {
 
     client.newCall(request).enqueue(object : Callback {
         override fun onFailure(call: Call, e: IOException) {
-            println("Error: ${e.message}")
+            Log.e("NetworkClient", "Error: ${e.message}")
         }
 
         override fun onResponse(call: Call, response: Response) {
             if (response.isSuccessful) {
-                println("Response: ${response.body?.string()}")
+                Log.d("NetworkClient", "Response: ${response.body?.string()}")
             } else {
-                println("Response error: ${response.code}")
+                Log.e("NetworkClient", "Response error: ${response.code}")
             }
         }
     })
